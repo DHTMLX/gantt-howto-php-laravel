@@ -22,4 +22,4 @@ Implementing backend for dhtmlxGantt using Laravel framework.
 
 ### Tutorial
 
-A complete tutorial here https://docs.dhtmlx.com/gantt/desktop__how_to_start.html
+A complete tutorial here https://docs.dhtmlx.com/gantt/desktop__howtostart_php_laravel.html
