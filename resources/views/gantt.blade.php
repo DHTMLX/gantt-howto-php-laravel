@@ -27,6 +27,6 @@
     const dp = gantt.createDataProcessor({
       url: "/api",
       mode: "REST"
-});
+    });
 </script>
 </body>
