@@ -1,47 +1,39 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Link;
+use App\Models\Link;
 
 class LinkController extends Controller
 {
-	public function store(Request $request){
-
-		$link = new Link();
-
-		$link->type = $request->type;
-		$link->source = $request->source;
-		$link->target = $request->target;
-
-		$link->save();
+	public function store(Request $request)
+	{
+		$link = Link::create($request->only(['type', 'source', 'target']));
 
 		return response()->json([
-			"action"=> "inserted",
-			"tid" => $link->id
+			'action' => 'inserted',
+			'tid' => $link->id,
 		]);
 	}
 
-	public function update($id, Request $request){
-		$link = Link::find($id);
-
-		$link->type = $request->type;
-		$link->source = $request->source;
-		$link->target = $request->target;
-
-		$link->save();
+	public function update(Request $request, $id)
+	{
+		$link = Link::findOrFail($id);
+		$link->update($request->only(['type', 'source', 'target']));
 
 		return response()->json([
-			"action"=> "updated"
+			'action' => 'updated',
 		]);
 	}
 
-	public function destroy($id){
-		$link = Link::find($id);
+	public function destroy($id)
+	{
+		$link = Link::findOrFail($id);
 		$link->delete();
 
 		return response()->json([
-			"action"=> "deleted"
+			'action' => 'deleted',
 		]);
 	}
 }
