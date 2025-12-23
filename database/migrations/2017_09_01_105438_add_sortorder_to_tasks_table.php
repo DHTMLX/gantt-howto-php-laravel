@@ -11,7 +11,7 @@ class AddSortorderToTasksTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::table('tasks', function (Blueprint $table) {
 			$table->integer('sortorder')->default(0);
@@ -23,10 +23,10 @@ class AddSortorderToTasksTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::table('tasks', function (Blueprint $table) {
 			$table->dropColumn('sortorder');
 		});
 	}
-}
+};

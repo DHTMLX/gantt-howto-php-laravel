@@ -1,17 +1,19 @@
 <?php
 namespace App\Http\Controllers;
-use App\Task;
-use App\Link;
+use Illuminate\Http\JsonResponse;
+use App\Models\Task;
+use App\Models\Link;
 
 class GanttController extends Controller
 {
-	public function get(){
-		$tasks = new Task();
-		$links = new Link();
+	public function get(): JsonResponse
+	{
+		$tasks = Task::orderBy('sortorder')->get();
+		$links = Link::all();
 
 		return response()->json([
-			"data" => $tasks->orderBy('sortorder')->get(),
-			"links" => $links->all()
+			"tasks" => $tasks,
+			"links" => $links
 		]);
 	}
 }
